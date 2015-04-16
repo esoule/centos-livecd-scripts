@@ -35,9 +35,36 @@ fi
 
 set -x
 
+rm -v -rf /root/centos-livecd-scripts
+mkdir -v /root/centos-livecd-scripts
+mkdir -v /root/centos-livecd-scripts/from-host
+touch /root/centos-livecd-scripts/from-host/.exists
+mkdir -v /root/centos-livecd-scripts/from-target
+touch /root/centos-livecd-scripts/from-target/.exists
+
+cp -r --preserve=mode,timestamps    \
+    --target-directory /root/centos-livecd-scripts    \
+    $TOP_DIR/host $TOP_DIR/target
+
+/usr/bin/tree -anFp /root/centos-livecd-scripts
+
 d=$PWD
 mkdir -p $d/out $d/out/v $d/out/v/cache $d/out/v/tmp
 ls -lad $d/out $d/out/v $d/out/v/cache $d/out/v/tmp
 
 ( cd out && livecd-creator -c "$KSR" --tmpdir=$d/out/v/tmp --cache=$d/out/v/cache )
 
+rm -rf $d/out/from-host
+rm -rf $d/out/from-target
+cp -r --preserve=timestamps  /root/centos-livecd-scripts/from-host  $d/out/from-host
+cp -r --preserve=timestamps  /root/centos-livecd-scripts/from-target  $d/out/from-target
+
+for dn in $d/out/from-host $d/out/from-target ; do
+    find $dn -type d -exec chmod 0775 {} \;
+    find $dn -type f -exec chmod 0664 {} \;
+    find $dn -type d -exec chgrp users {} \;
+    find $dn -type f -exec chgrp users {} \;
+done
+
+/usr/bin/tree -anFp $d/out/from-host
+/usr/bin/tree -anFp $d/out/from-target
