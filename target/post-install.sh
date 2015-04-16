@@ -1,6 +1,7 @@
 #!/bin/bash
 
 TFILES=/root/centos-livecd-scripts/target/files
+FTDIR=/root/centos-livecd-scripts/from-target
 
 echo "###################################################################"
 echo "## Creating the livesys init script"
@@ -21,6 +22,14 @@ install -p -m 0755 ${TFILES}/etc/rc.d/init.d/livesys-late /etc/rc.d/init.d/lives
 
 # go ahead and pre-make the man -k cache (#455968)
 /usr/sbin/makewhatis -w
+
+# generate manifest
+/bin/rpm -q --all --queryformat '%{NAME}\t%{ARCH}\n'    \
+    | LANG=en_CA.UTF-8 sort -t $'\t' --key=1,1 --key=2,2    \
+    > ${FTDIR}/centos-installed-packages-summary.txt
+/bin/rpm -q --all --queryformat '%{NAME}\t%{ARCH}\t%{VERSION}-%{RELEASE}\t%{VENDOR}\n'    \
+    | LANG=en_CA.UTF-8 sort -t $'\t' --key=1,1 --key=2,2    \
+    > ${FTDIR}/centos-installed-packages-detail.txt
 
 # save a little bit of space at least...
 rm -f /var/lib/rpm/__db*

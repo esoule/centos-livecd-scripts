@@ -1,7 +1,12 @@
 #!/bin/bash
 
+FTDIR=/root/centos-livecd-scripts/from-target
+
 # Copy licensing information
 cp $INSTALL_ROOT/usr/share/doc/centos-release-*/GPL $LIVE_ROOT/GPL
+
+# Copy installed package list
+cp ${INSTALL_ROOT}${FTDIR}/centos-installed-packages*.txt $LIVE_ROOT/
 
 # add livecd-iso-to-disk utility on the LiveCD
 # only works on x86, x86_64
