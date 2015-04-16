@@ -1,0 +1,11 @@
+# Backup files
+*~
+*.old
+*.bak
+*.log
+*.org
+*.orig
+*.rej
+
+/out
+/patches
