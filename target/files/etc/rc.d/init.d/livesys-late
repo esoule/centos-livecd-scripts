@@ -41,7 +41,7 @@ if strstr "`cat /proc/cmdline`" textinst ; then
 fi
 
 # configure X, allowing user to override xdriver
-if [ -n "" ]; then
+if [ -n "$xdriver" ]; then
     exists system-config-display --noui --reconfig --set-depth=24 $xdriver
 fi
 
