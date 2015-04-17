@@ -52,6 +52,3 @@ sed -i "s/rhgb/rhgb vga=791/g"	$LIVE_ROOT/isolinux/isolinux.cfg
 # Disabling auto lvm/disk mount (that will crash the "Install to Hard Drive feature")
 sed -i "s/quiet/quiet nodiskmount nolvmmount/g"	$LIVE_ROOT/isolinux/isolinux.cfg
 
-# Fix the "liveinst doesn't start in gui mode when not enough memory available" - switching to terminal mode
-sed -i "s/Terminal=false/Terminal=true/" $LIVE_ROOT/home/centoslive/Desktop/liveinst.desktop
-

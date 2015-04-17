@@ -176,6 +176,16 @@ TimedLogin=centoslive
 TimedLoginDelay=10
 FOE
 
+# Fix the "liveinst doesn't start in gui mode when not
+# enough memory available" - switching to terminal mode
+# NOTE: /etc/X11/xinit/xinitrc.d/zz-liveinst.sh copies
+# /usr/share/applications/liveinst.desktop to user's Desktop
+# on X startup. We need to modify the source file before that, during live boot only
+if [ -s /usr/share/applications/liveinst.desktop ] ; then
+    sed -i -e "s/Terminal=false/Terminal=true/" /usr/share/applications/liveinst.desktop
+    /sbin/restorecon /usr/share/applications/liveinst.desktop
+fi
+
 # add keyboard and display configuration utilities to the desktop
 mkdir -p /home/centoslive/Desktop >/dev/null
 cp /usr/share/applications/gnome-keyboard.desktop           /home/centoslive/Desktop/
