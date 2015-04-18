@@ -35,11 +35,11 @@ fi
 
 set -x
 
-rm -v -rf /root/centos-livecd-scripts
-mkdir -v /root/centos-livecd-scripts
-mkdir -v /root/centos-livecd-scripts/from-host
+rm -rf /root/centos-livecd-scripts
+mkdir /root/centos-livecd-scripts
+mkdir /root/centos-livecd-scripts/from-host
 touch /root/centos-livecd-scripts/from-host/.exists
-mkdir -v /root/centos-livecd-scripts/from-target
+mkdir /root/centos-livecd-scripts/from-target
 touch /root/centos-livecd-scripts/from-target/.exists
 
 cp -r --preserve=mode,timestamps    \
