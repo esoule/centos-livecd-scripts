@@ -20,6 +20,9 @@ install -p -m 0755 ${TFILES}/etc/rc.d/init.d/livesys-late /etc/rc.d/init.d/lives
 /sbin/restorecon /etc/rc.d/init.d/livesys-late
 /sbin/chkconfig --add livesys-late
 
+# list weak kernel modules
+find /lib/modules/ \( -type f -o -type l \) -name '*.ko' | grep '\(extra\|weak\)' | LANG=en_CA.UTF-8 sort
+
 # go ahead and pre-make the man -k cache (#455968)
 /usr/sbin/makewhatis -w
 
