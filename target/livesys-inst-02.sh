@@ -5,6 +5,11 @@ source /root/centos-livecd-scripts/target/livesys-inst-functions
 TFILES=/root/centos-livecd-scripts/target/files
 
 ##
+## record initial state of /etc
+##
+/bin/bash -x /root/centos-livecd-scripts/target/etckeeper-commit-02.sh
+
+##
 ## /etc/gitconfig
 ##
 install -p -m 0644 ${TFILES}/etc/gitconfig /etc/gitconfig
