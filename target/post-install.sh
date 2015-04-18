@@ -7,18 +7,26 @@ echo "###################################################################"
 echo "## Creating the livesys init script"
 echo "###################################################################"
 
+install_service_file()
+{
+    local svc_name=$1
+    install -p -m 0755 ${TFILES}/etc/rc.d/init.d/${svc_name} /etc/rc.d/init.d/${svc_name}
+    /sbin/restorecon /etc/rc.d/init.d/${svc_name}
+    /sbin/chkconfig --add ${svc_name}
+    return 0
+}
+
 # workaround avahi segfault (#279301)
 touch /etc/resolv.conf
 /sbin/restorecon /etc/resolv.conf
 
-install -p -m 0755 ${TFILES}/etc/rc.d/init.d/livesys /etc/rc.d/init.d/livesys
-/sbin/restorecon /etc/rc.d/init.d/livesys
-/sbin/chkconfig --add livesys
-
+install_service_file livesys
 # bah, hal starts way too late
-install -p -m 0755 ${TFILES}/etc/rc.d/init.d/livesys-late /etc/rc.d/init.d/livesys-late
-/sbin/restorecon /etc/rc.d/init.d/livesys-late
-/sbin/chkconfig --add livesys-late
+install_service_file livesys-late
+
+# custom files, to be run on LiveDVD and first hard drive boot
+install_service_file livesys-inst-02
+install_service_file livesys-inst-98
 
 # list weak kernel modules
 find /lib/modules/ \( -type f -o -type l \) -name '*.ko' | grep '\(extra\|weak\)' | LANG=en_CA.UTF-8 sort
