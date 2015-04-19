@@ -35,12 +35,7 @@ find /lib/modules/ \( -type f -o -type l \) -name '*.ko' | grep '\(extra\|weak\)
 /usr/sbin/makewhatis -w
 
 # generate manifest
-/bin/rpm -q --all --queryformat '%{NAME}\t%{ARCH}\n'    \
-    | LANG=en_CA.UTF-8 sort -t $'\t' --key=1,1 --key=2,2    \
-    > ${FTDIR}/centos-installed-packages-summary.txt
-/bin/rpm -q --all --queryformat '%{NAME}\t%{ARCH}\t%{VERSION}-%{RELEASE}\t%{VENDOR}\n'    \
-    | LANG=en_CA.UTF-8 sort -t $'\t' --key=1,1 --key=2,2    \
-    > ${FTDIR}/centos-installed-packages-detail.txt
+/bin/bash -x /root/centos-livecd-scripts/target/gen-package-list.sh ${FTDIR}
 
 # save a little bit of space at least...
 rm -f /var/lib/rpm/__db*
