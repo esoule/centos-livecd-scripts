@@ -48,6 +48,13 @@ install -p -m 0644 ${TFILES}/etc/gitconfig /etc/gitconfig
 /sbin/chkconfig --level 345 avahi-daemon off
 
 ##
+## disable sshd for LiveCD run
+##
+if is_liveimg_run ; then
+    /sbin/chkconfig --level 2345 sshd off
+fi
+
+##
 ## /etc/inputrc
 ##
 if [ -s /etc/inputrc ] ; then
