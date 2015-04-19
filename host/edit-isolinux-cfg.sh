@@ -39,8 +39,8 @@ sed -i "s/ rhgb / /"                         $LIVE_ROOT/isolinux/textinstall.txt
 
 cat $LIVE_ROOT/isolinux/header.txt $LIVE_ROOT/isolinux/default.txt $LIVE_ROOT/isolinux/textboot.txt $LIVE_ROOT/isolinux/basicvideo.txt $LIVE_ROOT/isolinux/install.txt $LIVE_ROOT/isolinux/textinstall.txt $LIVE_ROOT/isolinux/memtest.txt $LIVE_ROOT/isolinux/localboot.txt > $LIVE_ROOT/isolinux/isolinux.cfg
 
-# Forcing plymouth to show the logo in vesafb 
-sed -i "s/rhgb/rhgb vga=791/g"	$LIVE_ROOT/isolinux/isolinux.cfg
+# Set resolution in vesafb mode, do not show logo during boot
+sed -i "s/ rhgb / vga=791 /g"	$LIVE_ROOT/isolinux/isolinux.cfg
 
 # Disabling auto lvm/disk mount (that will crash the "Install to Hard Drive feature")
 sed -i "s/quiet/quiet nodiskmount nolvmmount/g"	$LIVE_ROOT/isolinux/isolinux.cfg
