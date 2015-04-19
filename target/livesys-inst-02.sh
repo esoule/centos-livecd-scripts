@@ -55,6 +55,11 @@ if is_liveimg_run ; then
 fi
 
 ##
+## disable nginx for both LiveCD and hard drive
+##
+/sbin/chkconfig nginx off
+
+##
 ## /etc/inputrc
 ##
 if [ -s /etc/inputrc ] ; then
