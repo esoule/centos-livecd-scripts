@@ -16,6 +16,27 @@ install -p -m 0644 ${TFILES}/root/.gitconfig /root/.gitconfig
 /bin/bash -x /root/centos-livecd-scripts/target/etckeeper-commit-02.sh
 
 ##
+## /boot/grub/grub.conf
+## remove hiddenmenu, increase timeout, fix "anaconda bluesky" title,
+## set vga=791, do not show full-screen logo
+## NOTE: this takes effect on next boot only
+##
+if ! is_liveimg_run ; then
+    if [ -f /boot/grub/grub.conf -a -s /boot/grub/grub.conf ] ; then
+        cp --archive /boot/grub/grub.conf /boot/grub/grub.conf.centos-livecd-scripts.orig
+
+        sed -i -e 's!^\s*hiddenmenu\s*$!!;'    \
+            -e 's!^\s*timeout=[0-9]\+\s*$!timeout=10!;'    \
+            -e 's!title anaconda bluesky!title CentOS 6!;'    \
+            -e 's!^\(\s*kernel.*\)\brhgb\b\(.*\)$!\1vga=791\2!;'    \
+            /boot/grub/grub.conf
+
+        chmod 0600 /boot/grub/grub.conf
+        /sbin/restorecon /boot/grub/grub.conf
+    fi
+fi
+
+##
 ## /etc/gitconfig
 ##
 install -p -m 0644 ${TFILES}/etc/gitconfig /etc/gitconfig
