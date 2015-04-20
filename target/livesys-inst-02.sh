@@ -143,6 +143,25 @@ install -p -m 0644 ${TFILES}/etc/sysconfig/prelink /etc/sysconfig/prelink
 /sbin/restorecon /etc/sysconfig/prelink
 
 ##
+## /etc/sysconfig/iptables, system-config-firewall et al
+##
+## NOTE: have to do it here, because kickstart firewall
+## option is not giving the expected result for LiveCD
+## and, also, not all rules can be specified that way
+##
+install -d -m 0700 /etc/sysconfig/iptables-local
+for fn in ipv4-filter-{forward,nfs,ntp} ; do
+    install -p -m 0600 ${TFILES}/etc/sysconfig/iptables-local/${fn}    \
+        /etc/sysconfig/iptables-local/${fn}
+done
+/sbin/restorecon -r /etc/sysconfig/iptables-local
+for fn in system-config-firewall {ip,ip6}tables{,-config} ; do
+    install -p -m 0600 ${TFILES}/etc/sysconfig/${fn}    \
+        /etc/sysconfig/${fn}
+    /sbin/restorecon /etc/sysconfig/${fn}
+done
+
+##
 ## /etc/yum/pluginconf.d/fastestmirror.conf
 ##
 if [ -s /etc/yum/pluginconf.d/fastestmirror.conf ] ; then

@@ -1,0 +1,12 @@
+
+## file "/etc/sysconfig/iptables-local/ipv4-filter-forward" begins
+##
+## to edit rules, edit the file with the name specified above
+## and re-run the "setup" utility or "system-config-firewall"
+## to re-generate the firewall configuration.
+
+-A FORWARD -j ACCEPT
+
+##
+## file "/etc/sysconfig/iptables-local/ipv4-filter-forward" ends
+

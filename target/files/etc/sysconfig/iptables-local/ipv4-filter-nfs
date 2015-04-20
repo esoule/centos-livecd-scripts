@@ -1,0 +1,31 @@
+
+## file "/etc/sysconfig/iptables-local/ipv4-filter-nfs" begins
+##
+## to edit rules, edit the file with the name specified above
+## and re-run the "setup" utility or "system-config-firewall"
+## to re-generate the firewall configuration.
+
+##
+## RPC 4.0 portmapper
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 111 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 111 -j ACCEPT
+## NFS (here UDP only, TCP is in main iptables config)
+-A INPUT -m state --state NEW -m udp -p udp --dport 2049 -j ACCEPT
+## lockd
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 32803 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 32769 -j ACCEPT
+## mountd
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 892 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 892 -j ACCEPT
+## rquotad
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 875 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 875 -j ACCEPT
+## statd
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 662 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 662 -j ACCEPT
+##
+
+##
+## file "/etc/sysconfig/iptables-local/ipv4-filter-nfs" ends
+
+

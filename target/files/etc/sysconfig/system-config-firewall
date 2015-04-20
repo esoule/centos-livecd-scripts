@@ -1,0 +1,22 @@
+# Configuration file for system-config-firewall
+
+--enabled
+--port=5000-5010:tcp
+--port=5000-5010:udp
+--port=5900-5920:tcp
+--port=24800-24810:tcp
+--custom-rules=ipv4:filter:/etc/sysconfig/iptables-local/ipv4-filter-forward
+--custom-rules=ipv4:filter:/etc/sysconfig/iptables-local/ipv4-filter-nfs
+--custom-rules=ipv4:filter:/etc/sysconfig/iptables-local/ipv4-filter-ntp
+--service=ipp-client
+--service=ipp
+--service=mdns
+--service=ssh
+--service=http
+--service=ftp
+--service=nfs
+--service=https
+--service=samba-client
+--service=samba
+--service=tftp
+--service=tftp-client

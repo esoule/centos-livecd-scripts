@@ -1,0 +1,90 @@
+# Firewall configuration written by system-config-firewall
+# Manual customization of this file is not recommended.
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 631 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 631 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 631 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 5353 -d 224.0.0.251 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 21 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 2049 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 137 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 138 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 137 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 138 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 139 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 445 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 69 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 5000:5010 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 5000:5010 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 5900:5920 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 24800:24810 -j ACCEPT
+
+## file "/etc/sysconfig/iptables-local/ipv4-filter-forward" begins
+##
+## to edit rules, edit the file with the name specified above
+## and re-run the "setup" utility or "system-config-firewall"
+## to re-generate the firewall configuration.
+
+-A FORWARD -j ACCEPT
+
+##
+## file "/etc/sysconfig/iptables-local/ipv4-filter-forward" ends
+
+
+## file "/etc/sysconfig/iptables-local/ipv4-filter-nfs" begins
+##
+## to edit rules, edit the file with the name specified above
+## and re-run the "setup" utility or "system-config-firewall"
+## to re-generate the firewall configuration.
+
+##
+## RPC 4.0 portmapper
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 111 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 111 -j ACCEPT
+## NFS (here UDP only, TCP is in main iptables config)
+-A INPUT -m state --state NEW -m udp -p udp --dport 2049 -j ACCEPT
+## lockd
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 32803 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 32769 -j ACCEPT
+## mountd
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 892 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 892 -j ACCEPT
+## rquotad
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 875 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 875 -j ACCEPT
+## statd
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 662 -j ACCEPT
+-A INPUT -m state --state NEW -m udp -p udp --dport 662 -j ACCEPT
+##
+
+##
+## file "/etc/sysconfig/iptables-local/ipv4-filter-nfs" ends
+
+
+
+## file "/etc/sysconfig/iptables-local/ipv4-filter-ntp" begins
+##
+## to edit rules, edit the file with the name specified above
+## and re-run the "setup" utility or "system-config-firewall"
+## to re-generate the firewall configuration.
+
+##
+## NTP over UDP
+-A INPUT -m state --state NEW -m udp -p udp --dport 123 -j ACCEPT
+
+##
+## file "/etc/sysconfig/iptables-local/ipv4-filter-ntp" ends
+
+
+-A INPUT -j REJECT --reject-with icmp-host-prohibited
+-A FORWARD -j REJECT --reject-with icmp-host-prohibited
+COMMIT
