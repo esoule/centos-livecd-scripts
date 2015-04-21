@@ -28,6 +28,13 @@ install_service_file livesys-late
 install_service_file livesys-inst-02
 install_service_file livesys-inst-98
 
+#
+# fix boot warning "GOTO 'pulseaudio_check_usb' has no matching label"
+# NOTE: temporary fix, taken from pulseaudio-0.9.21-21.el6
+#
+sed -i -e '/GOTO="pulseaudio_check_usb"/d' /lib/udev/rules.d/90-pulseaudio.rules
+/sbin/restorecon /lib/udev/rules.d/90-pulseaudio.rules
+
 # list weak kernel modules
 find /lib/modules/ \( -type f -o -type l \) -name '*.ko' | grep '\(extra\|weak\)' | LANG=en_CA.UTF-8 sort
 
