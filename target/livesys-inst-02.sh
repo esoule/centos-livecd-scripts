@@ -198,6 +198,16 @@ mkdir /srv/ftp /srv/ftp/pub
 /sbin/restorecon /srv/ftp /srv/ftp/pub
 /usr/sbin/usermod --home=/srv/ftp ftp
 
+##
+## move tftp home directory to /srv/tftpboot
+##
+mkdir /srv/tftpboot
+/usr/bin/chcon -u system_u -r object_r -t tftpdir_rw_t /srv/tftpboot
+if [ -s /etc/xinetd.d/tftp ] ; then
+    sed -i -e 's!/var/lib/tftpboot!/srv/tftpboot!g' /etc/xinetd.d/tftp
+    /sbin/restorecon /etc/xinetd.d/tftp
+fi
+
 ## /etc/xdg/autostart/gpk-update-icon.desktop
 rm -f /etc/xdg/autostart/gpk-update-icon.desktop
 
