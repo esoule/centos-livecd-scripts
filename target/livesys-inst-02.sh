@@ -191,6 +191,13 @@ ____EOF
     /sbin/restorecon /etc/vsftpd/vsftpd.conf
 fi    ## if [ -s /etc/vsftpd/vsftpd.conf ]
 
+##
+## move ftp home directory to /srv/ftp
+##
+mkdir /srv/ftp /srv/ftp/pub
+/sbin/restorecon /srv/ftp /srv/ftp/pub
+/usr/sbin/usermod --home=/srv/ftp ftp
+
 ## /etc/xdg/autostart/gpk-update-icon.desktop
 rm -f /etc/xdg/autostart/gpk-update-icon.desktop
 
