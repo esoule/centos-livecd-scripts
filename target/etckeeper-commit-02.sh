@@ -15,8 +15,14 @@ cat <<"____EOF" >/etc/.gitignore
 /passwd-
 /shadow
 /shadow-
+/selinux/targeted/policy/
+/selinux/targeted/modules/active/*.pp
+/selinux/targeted/modules/active/commit_num
+/selinux/targeted/modules/active/modules/
+/selinux/targeted/modules/active/policy.kern
 yum.repos.d/tmp-*.repo
 *.bak
+
 
 # end section inserted by centos-livecd-scripts
 #
