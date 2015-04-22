@@ -225,3 +225,10 @@ fi
 ## see /etc/sudoers.d/developers above
 ##
 { /usr/bin/getent group developers >/dev/null ; } || /usr/sbin/groupadd -r developers
+
+##
+## add user centoslive to groups
+##
+if is_liveimg_run ; then
+    usermod --append --groups developers,dialout,users,uucp,wireshark centoslive
+fi
