@@ -25,8 +25,8 @@ install_service_file livesys
 install_service_file livesys-late
 
 # custom files, to be run on LiveDVD and first hard drive boot
-install_service_file livesys-inst-02
-install_service_file livesys-inst-98
+install_service_file livesys-inst-early
+install_service_file livesys-inst-late
 
 #
 # fix boot warning "GOTO 'pulseaudio_check_usb' has no matching label"

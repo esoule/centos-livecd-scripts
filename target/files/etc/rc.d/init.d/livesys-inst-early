@@ -1,13 +1,13 @@
 #!/bin/bash
 #
-# livesys-inst-02: Init script for live image
+# livesys-inst-early: Init script for live image
 #
 # chkconfig: 345 02 97
 # description: Init script for live image.
 
 . /etc/init.d/functions
 
-svc_name=livesys-inst-02
+svc_name=livesys-inst-early
 
 if [ "$1" != "start" ] ; then
     exit 0
