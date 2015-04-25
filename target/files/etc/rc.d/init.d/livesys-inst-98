@@ -16,9 +16,14 @@ fi
 /sbin/chkconfig ${svc_name} off
 
 mkdir -p /root/centos-livecd-scripts/from-target
+rm -f /tmp/${svc_name}.log
+touch /tmp/${svc_name}.log
 /bin/bash -x /root/centos-livecd-scripts/target/${svc_name}.sh    \
-    >/root/centos-livecd-scripts/from-target/${svc_name}.log 2>&1
+    >/tmp/${svc_name}.log 2>&1
 RETVAL=$?
+
+cp /tmp/${svc_name}.log /root/centos-livecd-scripts/from-target/${svc_name}.log    \
+    && rm -f /tmp/${svc_name}.log
 
 if [ "$RETVAL" -eq 0 ]; then
     action "Running ${svc_name}" /bin/true
