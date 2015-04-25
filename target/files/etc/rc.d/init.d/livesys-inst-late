@@ -2,7 +2,7 @@
 #
 # livesys-inst-late: Init script for live image
 #
-# chkconfig: 345 98 01
+# chkconfig: 345 97 02
 # description: Init script for live image.
 
 . /etc/init.d/functions
