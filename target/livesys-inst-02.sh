@@ -212,6 +212,31 @@ fi
 rm -f /etc/xdg/autostart/gpk-update-icon.desktop
 
 ##
+## Store GConf-based admin customizations, part 1
+## See https://docs.oracle.com/cd/E36784_01/html/E36853/glmrh.html
+## "Customizing GConf Based Optimizations"
+##
+install -d -m 0755 /etc/gconf/gconf.xml.admin.defaults
+GCONFTOOL2_LOAD_ADMIN_DEF='gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.admin.defaults --load'
+
+##
+## do not show all valid user accounts in gnome login
+## workaround for rhbz #666220
+## (see http://blog.toracat.org/2011/01/gnome-login-shows-all-valid-user-accounts-disable-it/ )
+##
+if ! is_liveimg_run ; then
+    ${GCONFTOOL2_LOAD_ADMIN_DEF} /root/centos-livecd-scripts/target/gconfsettings/apps-gdm.xml
+fi
+
+##
+## Store GConf-based admin customizations, part 2
+##
+/bin/chmod -R u=rwX,g=rX,o=rX /etc/gconf/gconf.xml.admin.defaults
+echo 'xml:readonly:/etc/gconf/gconf.xml.admin.defaults' >/etc/gconf/2/local-defaults.path
+/sbin/restorecon /etc/gconf/2/local-defaults.path
+/sbin/restorecon -r /etc/gconf/gconf.xml.admin.defaults
+
+##
 ## require NetworkManager apply both /etc/sysctl.conf and /etc/sysctl.d/*
 ## workaround for rhbz #1213118
 ##

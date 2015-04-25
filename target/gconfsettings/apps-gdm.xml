@@ -1,0 +1,11 @@
+<gconfentryfile>
+  <entrylist base="/apps/gdm/simple-greeter">
+    <entry>
+      <key>disable_user_list</key>
+      <schema_key>/schemas/apps/gdm/simple-greeter/disable_user_list</schema_key>
+      <value>
+        <bool>true</bool>
+      </value>
+    </entry>
+  </entrylist>
+</gconfentryfile>
