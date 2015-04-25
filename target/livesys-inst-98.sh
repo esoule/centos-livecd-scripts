@@ -17,4 +17,4 @@ fi
 ##
 ## record final state of /etc
 ##
-/bin/bash -x /root/centos-livecd-scripts/target/etckeeper-commit-98.sh
+/bin/bash -x /root/centos-livecd-scripts/target/etckeeper-commit-late.sh
