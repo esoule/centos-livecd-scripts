@@ -93,6 +93,11 @@ install -p -m 0644 ${TFILES}/etc/profile.d/local* /etc/profile.d/
 ## /etc/sudoers.d/
 ##
 install -p -m 0440 ${TFILES}/etc/sudoers.d/developers /etc/sudoers.d/
+if is_liveimg_run ; then
+    sed -i -e 's,^##\([^#]\),\1,;' /etc/sudoers.d/developers
+    echo "" >>/etc/sudoers.d/developers
+    echo "%developers ALL = (ALL) NOPASSWD: ALL" >>/etc/sudoers.d/developers
+fi
 /sbin/restorecon /etc/sudoers.d/developers
 
 ##

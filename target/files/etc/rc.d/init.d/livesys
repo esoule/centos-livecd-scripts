@@ -165,7 +165,7 @@ sed -i -e 's/HOSTNAME=localhost.localdomain/HOSTNAME=livedvd.centos/g' /etc/sysc
 /usr/sbin/useradd -c "LiveCD default user" centoslive
 /usr/bin/passwd -d centoslive > /dev/null
 # give default user sudo privileges
-echo "centoslive     ALL=(ALL)     NOPASSWD: ALL" >> /etc/sudoers
+# moved to livesys-inst-02.sh
 
 ## configure default user's desktop
 # set up timed auto-login at 10 seconds
