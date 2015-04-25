@@ -2,7 +2,7 @@
 #
 # live: Late init script for live image
 #
-# chkconfig: 345 99 01
+# chkconfig: 345 98 02
 # description: Late init script for live image.
 
 . /etc/init.d/functions
