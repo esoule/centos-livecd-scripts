@@ -15,11 +15,6 @@ fi
 
 /sbin/chkconfig ${svc_name} off
 
-#
-# NOTE: /etc/sysctl.d settings do not apply when running from LiveCD
-#
-apply_sysctl
-
 mkdir -p /root/centos-livecd-scripts/from-target
 /bin/bash -x /root/centos-livecd-scripts/target/${svc_name}.sh    \
     >/root/centos-livecd-scripts/from-target/${svc_name}.log 2>&1
