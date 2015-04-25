@@ -1,0 +1,30 @@
+#!/bin/bash
+#
+# livesys-inst-cleanup: Init script for live image
+#
+# chkconfig: 345 99 01
+# description: Init script for live image.
+
+. /etc/init.d/functions
+
+svc_name=livesys-inst-cleanup
+
+if [ "$1" != "start" ] ; then
+    exit 0
+fi
+
+/sbin/chkconfig ${svc_name} off
+
+action "Running ${svc_name}" /bin/true
+
+mkdir -p /root/centos-livecd-scripts/from-target
+rm -f /tmp/${svc_name}.log
+touch /tmp/${svc_name}.log
+/bin/bash -x /root/centos-livecd-scripts/target/${svc_name}.sh    \
+    >/tmp/${svc_name}.log 2>&1
+RETVAL=$?
+
+cp /tmp/${svc_name}.log /root/centos-livecd-scripts/from-target/${svc_name}.log    \
+    && rm -f /tmp/${svc_name}.log
+
+exit $RETVAL

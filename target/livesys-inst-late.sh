@@ -13,8 +13,3 @@ if ! is_liveimg_run ; then
     sed -i -e 's!\(\sext[234]\s\+defaults\)\(\s\)!\1,noatime\2!;' /etc/fstab
     /sbin/restorecon /etc/fstab
 fi
-
-##
-## record final state of /etc
-##
-/bin/bash -x /root/centos-livecd-scripts/target/etckeeper-commit-late.sh
