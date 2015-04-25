@@ -229,6 +229,13 @@ if ! is_liveimg_run ; then
 fi
 
 ##
+## enable subpixel rendering, full hinting
+## WARNING: cannot set 96 DPI, because this
+## makes gnome-appearance-properties crash with BadAlloc X error
+##
+${GCONFTOOL2_LOAD_ADMIN_DEF} /root/centos-livecd-scripts/target/gconfsettings/gnome-font_rendering.xml
+
+##
 ## Store GConf-based admin customizations, part 2
 ##
 /bin/chmod -R u=rwX,g=rX,o=rX /etc/gconf/gconf.xml.admin.defaults
