@@ -62,7 +62,7 @@ chmod 0775 $d/out $d/out/v $d/out/v/cache $d/out/v/tmp ${result_dir}
 chgrp users $d/out $d/out/v $d/out/v/cache $d/out/v/tmp ${result_dir}
 ls -lad $d/out $d/out/v $d/out/v/cache $d/out/v/tmp ${result_dir}
 
-( cd ${result_dir} && livecd-creator -c "$KSR" --tmpdir=$d/out/v/tmp --cache=$d/out/v/cache )
+( cd ${result_dir} && livecd-creator -c "$KSR" --releasever=6 --tmpdir=$d/out/v/tmp --cache=$d/out/v/cache )
 
 rm -rf ${result_dir}/from-host
 rm -rf ${result_dir}/from-target
