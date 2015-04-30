@@ -36,7 +36,8 @@ if [ -z "$KSDIR" ] ; then
     show_usage_and_exit
 fi
 if [ "$EUID" -ne 0 ] ; then
-    e "please run the script as root"
+    e "please run $PROGNAME as root"
+    e "(livecd-creator program requires root to run)"
     show_usage_and_exit
 fi
 
