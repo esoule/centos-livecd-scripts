@@ -1,44 +1,100 @@
 #!/bin/bash
 PROGNAME=$(echo `basename $0`)
 TOP_DIR=$(cd `dirname $0` && pwd)
+ERR=0
 
 show_usage_and_exit()
 {
-    echo "Usage: $PROGNAME KICKSTART_FILE" >&2
+cat <<__USAGE_DOC__
+Usage: $PROGNAME KICKSTART_FILE
+
+Generate a LiveDVD using KICKSTART_FILE and scripts found inside "host"
+and "target" subdirectories of centos-livecd-scripts
+
+Kickstart files compatible with $PROGNAME are found in "ks" subdirectory
+of centos-livecd-scripts
+
+Dependencies for $PROGNAME:
+
+  * realpath
+  * livecd-creator from livecd-tools
+  * $PROGNAME must be run as root
+
+Example for running $PROGNAME out of tree using sudo:
+
+    sudo ../centos-livecd-scripts/gen-livecd.sh    \\
+        ../centos-livecd-scripts/ks/centos6-liveDVD-desktop.cfg
+
+__USAGE_DOC__
     exit 1
 }
 
 e()
 {
     echo "ERROR: ""$@" >&2
+    ERR=1
 }
 
-KS=$1
+check_kickstart_file()
+{
+    #"Kickstart file must be provided"
+    if [ -z "$KS" ] ; then
+        e "Kickstart file must be provided"
+        return 0
+    fi
+    if [ ! \( -f "$KS" -a -r "$KS" \) ] ; then
+        e "Kickstart file must be provided (check path $KS)"
+        return 0
+    fi
+    KSR=`realpath --strip "$KS"`
+    if [ ! \( -n "$KSR" -a -f "$KSR" -a -r "$KSR" \) ] ; then
+        e "kickstart file must be a readable regular file ($KSR)"
+        return 0
+    fi
+    KSBN=`basename ${KSR}`
+    KSDIR=${KSBN%.cfg}
+    KSDIR=${KSDIR%.ks}
+    if [ -z "$KSDIR" ] ; then
+        e "could not figure out KSDIR from KSBN=${KSBN}"
+        return 0
+    fi
+    return 0
+}
 
-if [ -z "$KS" ] ; then
-    e "kickstart file is required"
-    show_usage_and_exit
-fi
-if [ ! \( -f "$KS" -a -r "$KS" \) ] ; then
-    e "kickstart file must be a readable regular file ($KS)"
-    show_usage_and_exit
-fi
-KSR=`realpath --strip "$KS"`
-if [ ! \( -n "$KSR" -a -f "$KSR" -a -r "$KSR" \) ] ; then
-    e "kickstart file must be a readable regular file ($KSR)"
-    show_usage_and_exit
-fi
-KSBN=`basename ${KSR}`
-KSDIR=${KSBN%.cfg}
-KSDIR=${KSDIR%.ks}
-if [ -z "$KSDIR" ] ; then
-    e "could not figure out KSDIR from KSBN=${KSBN}"
-    show_usage_and_exit
-fi
-if [ "$EUID" -ne 0 ] ; then
-    e "please run $PROGNAME as root"
-    e "(livecd-creator program requires root to run)"
-    show_usage_and_exit
+check_prerequisite()
+{
+    local exename="$1"
+    local packagename="$2"
+    local reponame="$3"
+    local fullpath=$(type -p ${exename})
+    if [ -n "${fullpath}" -a -x "${fullpath}" ] ; then
+        return 0
+    fi
+    e "Executable ${exename} not found"
+    e "    please install package ${packagename}"
+    e "    (from repository ${reponame})"
+    return 0
+}
+
+check_root_for_creator()
+{
+    if [ "$EUID" -ne 0 ] ; then
+        e "please run $PROGNAME as root"
+        e "    (livecd-creator program requires root to run)"
+    fi
+    return 0
+}
+
+KS="$1"
+ERR=0
+check_kickstart_file
+check_prerequisite realpath "realpath" "rpmforge"
+check_prerequisite livecd-creator "livecd-tools" "epel"
+check_root_for_creator
+if [ $ERR -ne 0 ] ; then
+    e "one or more errors occurred, stopping"
+    echo "" >&2
+    show_usage_and_exit >&2
 fi
 
 set -x
