@@ -7,7 +7,7 @@ files found in ks directory.
 Synopsis
 --------
 
-1. Populate a local mirror and point centos.mirror.localdomain to your
+1. Populate a local mirror and point centos.mirror.local to your
    server's address in /etc/hosts; or change the mirror URL inside the
    kickstart file you want to use (see Mirrors below)
 
@@ -45,17 +45,17 @@ Mirrors
 -------
 
 Kickstart files found in ks subdirectory refer to the URL
-http://centos.mirror.localdomain/ftp/pub/linux/centos/\$releasever/os/\$basearch/.
+http://centos.mirror.local/ftp/pub/linux/centos/\$releasever/os/\$basearch/.
 
 For latest CentOS 6.x x86_64, the URL translates to
-http://centos.mirror.localdomain/ftp/pub/linux/centos/6/os/x86_64/
+http://centos.mirror.local/ftp/pub/linux/centos/6/os/x86_64/
 
 One way to use this URL is to populate a local mirror using DVD images found on
 [mirror.centos.org](http://mirror.centos.org/centos/6/isos/x86_64/)
-and specify your web server's IP address for centos.mirror.localdomain
+and specify your web server's IP address for centos.mirror.local
 name
 
-        10.11.12.13    centos.mirror.localdomain
+        10.11.12.13    centos.mirror.local
 
 Another way is to change the URL inside the kickstart file
 to the nearest mirror found in [mirrorlist](http://mirrorlist.centos.org/?release=6&arch=x86_64&repo=os).
