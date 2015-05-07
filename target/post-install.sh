@@ -7,27 +7,9 @@ echo "###################################################################"
 echo "## Creating the livesys init script"
 echo "###################################################################"
 
-install_service_file()
-{
-    local svc_name=$1
-    install -p -m 0755 ${TFILES}/etc/rc.d/init.d/${svc_name} /etc/rc.d/init.d/${svc_name}
-    /sbin/restorecon /etc/rc.d/init.d/${svc_name}
-    /sbin/chkconfig --add ${svc_name}
-    return 0
-}
-
 # workaround avahi segfault (#279301)
 touch /etc/resolv.conf
 /sbin/restorecon /etc/resolv.conf
-
-install_service_file livesys
-# bah, hal starts way too late
-install_service_file livesys-late
-
-# custom files, to be run on LiveDVD and first hard drive boot
-install_service_file livesys-inst-early
-install_service_file livesys-inst-late
-install_service_file livesys-inst-cleanup
 
 #
 # fix boot warning "GOTO 'pulseaudio_check_usb' has no matching label"
@@ -35,6 +17,15 @@ install_service_file livesys-inst-cleanup
 #
 sed -i -e '/GOTO="pulseaudio_check_usb"/d' /lib/udev/rules.d/90-pulseaudio.rules
 /sbin/restorecon /lib/udev/rules.d/90-pulseaudio.rules
+
+#
+# move firstboot to position 97 from 99, so that
+# other firstinst scripts may execute after it
+#
+sed -i -e 's,chkconfig: 35 99 95,chkconfig: 35 97 95,' /etc/rc.d/init.d/firstboot
+/sbin/restorecon /etc/rc.d/init.d/firstboot
+/sbin/chkconfig --del firstboot
+/sbin/chkconfig --add firstboot
 
 # list weak kernel modules
 find /lib/modules/ \( -type f -o -type l \) -name '*.ko' | grep '\(extra\|weak\)' | LANG=en_CA.UTF-8 sort

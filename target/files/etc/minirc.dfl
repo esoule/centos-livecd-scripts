@@ -1,8 +1,0 @@
-# Machine-generated file - use "minicom -s" to change parameters.
-pu port             /dev/ttyS0
-pu minit            
-pu mreset           
-pu mhangup          
-pu statusline       enabled
-pu rtscts           No 
-pu xonxoff          No 
