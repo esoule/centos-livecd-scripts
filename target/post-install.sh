@@ -7,6 +7,23 @@ echo "###################################################################"
 echo "## Creating the livesys init script"
 echo "###################################################################"
 
+##
+## /root/.gitconfig
+##
+cat <<"__GITCONFIG__" >/root/.gitconfig
+[user]
+	name = root at localhost
+	email = root@localhost.localdomain
+__GITCONFIG__
+
+chmod 0644 /root/.gitconfig
+/sbin/restorecon /root/.gitconfig
+
+##
+## record initial state of /etc during live image generation
+##
+/bin/bash -x /root/centos-livecd-scripts/target/etckeeper-commit-early.sh
+
 # workaround avahi segfault (#279301)
 touch /etc/resolv.conf
 /sbin/restorecon /etc/resolv.conf
