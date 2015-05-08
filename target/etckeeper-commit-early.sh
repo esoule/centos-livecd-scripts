@@ -11,6 +11,7 @@ fi
 cat <<"____EOF" >/etc/.gitignore
 # begin section inserted by centos-livecd-scripts
 /group-
+/gshadow
 /gshadow-
 /passwd-
 /shadow
