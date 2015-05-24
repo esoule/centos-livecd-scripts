@@ -2,7 +2,8 @@
 PROGNAME=$(echo `basename $0`)
 TOP_DIR=$(cd `dirname $0` && pwd)
 ERR=0
-ROOT_CLS_TOP_DIR="/root/centos-livecd-scripts"
+DIST=el6
+ROOT_CLS_TOP_DIR="/root/centos-livecd-scripts/${DIST}"
 
 show_usage_and_exit()
 {
@@ -23,8 +24,8 @@ Dependencies for $PROGNAME:
 
 Example for running $PROGNAME out of tree using sudo:
 
-    sudo ../centos-livecd-scripts/gen-livecd.sh    \\
-        ../centos-livecd-scripts/ks/centos6-liveDVD-desktop.cfg
+    sudo ../centos-livecd-scripts/$PROGNAME    \\
+        ../centos-livecd-scripts/${DIST}/ks/centos6-liveDVD-desktop.cfg
 
 __USAGE_DOC__
     exit 1
@@ -108,7 +109,7 @@ touch ${ROOT_CLS_TOP_DIR}/from-target/.exists
 
 cp -r --preserve=mode,timestamps    \
     --target-directory ${ROOT_CLS_TOP_DIR}    \
-    $TOP_DIR/host $TOP_DIR/target
+    $TOP_DIR/${DIST}/host $TOP_DIR/${DIST}/target
 
 /usr/bin/tree -anFp ${ROOT_CLS_TOP_DIR}
 

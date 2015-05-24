@@ -1,5 +1,6 @@
 #!/bin/bash
-ROOT_CLS_TOP_DIR="/root/centos-livecd-scripts"
+DIST=el6
+ROOT_CLS_TOP_DIR="/root/centos-livecd-scripts/${DIST}"
 
 FTDIR=${ROOT_CLS_TOP_DIR}/from-target
 

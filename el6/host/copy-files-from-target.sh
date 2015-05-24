@@ -1,5 +1,6 @@
 #!/bin/bash
-ROOT_CLS_TOP_DIR="/root/centos-livecd-scripts"
+DIST=el6
+ROOT_CLS_TOP_DIR="/root/centos-livecd-scripts/${DIST}"
 
 echo "###################################################################"
 echo "## running copy-files-from-target.sh"
