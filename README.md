@@ -13,8 +13,8 @@ Synopsis
 
 2. Run the script using sudo or as root, out of tree
 
-        sudo ../centos-livecd-scripts/gen-livecd.sh    \
-             ../centos-livecd-scripts/ks/centos6-liveDVD-desktop.cfg
+        sudo ../centos-livecd-scripts/gen-livecd-el6.sh    \
+             ../centos-livecd-scripts/el6/ks/centos6-liveDVD-desktop.cfg
 
 Requirements
 ------------
