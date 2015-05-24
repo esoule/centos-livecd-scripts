@@ -51,6 +51,12 @@ find /lib/modules/ \( -type f -o -type l \) -name '*.ko' | grep '\(extra\|weak\)
 # go ahead and pre-make the man -k cache (#455968)
 /usr/sbin/makewhatis -w
 
+# go ahead and pre-make mlocate database
+if [ -e /etc/cron.daily/mlocate.cron ] ; then
+    /bin/sh /etc/cron.daily/mlocate.cron
+fi
+ls -la /var/lib/mlocate/*.db
+
 # generate manifest
 /bin/bash -x ${ROOT_CLS_TOP_DIR}/target/gen-package-list.sh ${FTDIR}
 
