@@ -1,4 +1,6 @@
 #!/bin/bash
+ROOT_CLS_TOP_DIR="/root/centos-livecd-scripts"
+
 echo "###################################################################"
 echo "## running copy-files-to-target.sh"
 echo "###################################################################"
@@ -8,16 +10,16 @@ if [ -z "${INSTALL_ROOT}" ] ; then
     exit 1
 fi
 
-/usr/bin/tree -anFp /root/centos-livecd-scripts
+/usr/bin/tree -anFp ${ROOT_CLS_TOP_DIR}
 
-rm -rf ${INSTALL_ROOT}/root/centos-livecd-scripts
-mkdir ${INSTALL_ROOT}/root/centos-livecd-scripts
-mkdir ${INSTALL_ROOT}/root/centos-livecd-scripts/from-target
-touch ${INSTALL_ROOT}/root/centos-livecd-scripts/from-target/.exists
-rm -rf ${INSTALL_ROOT}/root/centos-livecd-scripts/target
-cp -r --preserve=mode,timestamps /root/centos-livecd-scripts/target ${INSTALL_ROOT}/root/centos-livecd-scripts/target
+rm -rf ${INSTALL_ROOT}${ROOT_CLS_TOP_DIR}
+mkdir -p ${INSTALL_ROOT}${ROOT_CLS_TOP_DIR}
+mkdir ${INSTALL_ROOT}${ROOT_CLS_TOP_DIR}/from-target
+touch ${INSTALL_ROOT}${ROOT_CLS_TOP_DIR}/from-target/.exists
+rm -rf ${INSTALL_ROOT}${ROOT_CLS_TOP_DIR}/target
+cp -r --preserve=mode,timestamps ${ROOT_CLS_TOP_DIR}/target ${INSTALL_ROOT}${ROOT_CLS_TOP_DIR}/target
 
-/usr/bin/tree -anFp ${INSTALL_ROOT}/root/centos-livecd-scripts
+/usr/bin/tree -anFp ${INSTALL_ROOT}${ROOT_CLS_TOP_DIR}
 
 echo "###################################################################"
 echo "## DONE running copy-files-to-target.sh"

@@ -1,7 +1,7 @@
 #!/bin/bash
-
-TFILES=/root/centos-livecd-scripts/target/files
-FTDIR=/root/centos-livecd-scripts/from-target
+ROOT_CLS_TOP_DIR="/root/centos-livecd-scripts"
+TFILES=${ROOT_CLS_TOP_DIR}/target/files
+FTDIR=${ROOT_CLS_TOP_DIR}/from-target
 
 echo "###################################################################"
 echo "## Creating the livesys init script"
@@ -22,7 +22,7 @@ chmod 0644 /root/.gitconfig
 ##
 ## record initial state of /etc during live image generation
 ##
-/bin/bash -x /root/centos-livecd-scripts/target/etckeeper-commit-early.sh
+/bin/bash -x ${ROOT_CLS_TOP_DIR}/target/etckeeper-commit-early.sh
 
 # workaround avahi segfault (#279301)
 touch /etc/resolv.conf
@@ -51,7 +51,7 @@ find /lib/modules/ \( -type f -o -type l \) -name '*.ko' | grep '\(extra\|weak\)
 /usr/sbin/makewhatis -w
 
 # generate manifest
-/bin/bash -x /root/centos-livecd-scripts/target/gen-package-list.sh ${FTDIR}
+/bin/bash -x ${ROOT_CLS_TOP_DIR}/target/gen-package-list.sh ${FTDIR}
 
 # save a little bit of space at least...
 rm -f /var/lib/rpm/__db*

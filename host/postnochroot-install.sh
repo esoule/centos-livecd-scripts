@@ -1,6 +1,7 @@
 #!/bin/bash
+ROOT_CLS_TOP_DIR="/root/centos-livecd-scripts"
 
-FTDIR=/root/centos-livecd-scripts/from-target
+FTDIR=${ROOT_CLS_TOP_DIR}/from-target
 
 # Copy licensing information
 cp $INSTALL_ROOT/usr/share/doc/centos-release-*/GPL $LIVE_ROOT/GPL
@@ -15,5 +16,5 @@ if [ "$(uname -i)" = "i386" -o "$(uname -i)" = "x86_64" ]; then
   cp /usr/bin/livecd-iso-to-disk $LIVE_ROOT/LiveOS
 fi
 
-/bin/bash -x /root/centos-livecd-scripts/host/edit-isolinux-cfg.sh
+/bin/bash -x ${ROOT_CLS_TOP_DIR}/host/edit-isolinux-cfg.sh
 

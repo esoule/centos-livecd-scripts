@@ -2,6 +2,7 @@
 PROGNAME=$(echo `basename $0`)
 TOP_DIR=$(cd `dirname $0` && pwd)
 ERR=0
+ROOT_CLS_TOP_DIR="/root/centos-livecd-scripts"
 
 show_usage_and_exit()
 {
@@ -99,18 +100,17 @@ fi
 
 set -x
 
-rm -rf /root/centos-livecd-scripts
-mkdir /root/centos-livecd-scripts
-mkdir /root/centos-livecd-scripts/from-host
-touch /root/centos-livecd-scripts/from-host/.exists
-mkdir /root/centos-livecd-scripts/from-target
-touch /root/centos-livecd-scripts/from-target/.exists
+rm -rf ${ROOT_CLS_TOP_DIR}
+mkdir -p ${ROOT_CLS_TOP_DIR}
+mkdir ${ROOT_CLS_TOP_DIR}/from-host   ${ROOT_CLS_TOP_DIR}/from-target
+touch ${ROOT_CLS_TOP_DIR}/from-host/.exists
+touch ${ROOT_CLS_TOP_DIR}/from-target/.exists
 
 cp -r --preserve=mode,timestamps    \
-    --target-directory /root/centos-livecd-scripts    \
+    --target-directory ${ROOT_CLS_TOP_DIR}    \
     $TOP_DIR/host $TOP_DIR/target
 
-/usr/bin/tree -anFp /root/centos-livecd-scripts
+/usr/bin/tree -anFp ${ROOT_CLS_TOP_DIR}
 
 d=$PWD
 result_dir=$d/out/${KSDIR}
@@ -123,8 +123,8 @@ ls -lad $d/out $d/out/v $d/out/v/cache $d/out/v/tmp ${result_dir}
 
 rm -rf ${result_dir}/from-host
 rm -rf ${result_dir}/from-target
-cp -r --preserve=timestamps  /root/centos-livecd-scripts/from-host  ${result_dir}/from-host
-cp -r --preserve=timestamps  /root/centos-livecd-scripts/from-target  ${result_dir}/from-target
+cp -r --preserve=timestamps  ${ROOT_CLS_TOP_DIR}/from-host  ${result_dir}/from-host
+cp -r --preserve=timestamps  ${ROOT_CLS_TOP_DIR}/from-target  ${result_dir}/from-target
 
 for dn in ${result_dir}/from-host ${result_dir}/from-target ; do
     find $dn -type d -exec chmod 0775 {} \;
