@@ -232,7 +232,6 @@ putty
 rsnapshot
 qgit
 siege
-thttpd
 #### Bits from elrepo repository
 elrepo-release
 kmod-e1000

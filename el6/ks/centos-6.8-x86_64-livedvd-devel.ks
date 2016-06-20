@@ -331,7 +331,6 @@ pyliblzma
 rsnapshot
 qgit
 siege
-thttpd
 uboot-tools
 xemacs
 xemacs-common
