@@ -11,7 +11,6 @@ selinux --enforcing
 firewall --enabled --ssh
 repo --name=base    --baseurl=http://centos.mirror.local/ftp/pub/linux/centos/6/os/x86_64/
 repo --name=extras     --mirrorlist=http://mirrorlist.centos.org/?release=6&arch=x86_64&repo=extras
-repo --name=updates    --mirrorlist=http://mirrorlist.centos.org/?release=6&arch=x86_64&repo=updates
 repo --name=epel    --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?repo=epel-6&arch=x86_64
 repo --name=esrepo-main    --baseurl=http://centos.mirror.local/ftp/pub/linux/esrepo/main/packages/centos/6/x86_64/    --include=fsarchiver,os-tweaks*
 repo --name=esrepo-extras    --baseurl=http://centos.mirror.local/ftp/pub/linux/esrepo/extras/packages/centos/6/x86_64/    --include=firstinst-*,livesys-service
