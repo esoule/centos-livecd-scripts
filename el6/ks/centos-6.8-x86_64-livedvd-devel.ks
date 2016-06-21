@@ -1,27 +1,14 @@
-# System language
-lang en_CA.UTF-8
-# System keyboard
-keyboard us
-# System timezone
-timezone  America/Toronto
-# System authorization information
-auth  --useshadow  --passalgo=sha512
-selinux --enforcing
-# Firewall configuration
-firewall --enabled --ssh
 
 repo --name=esrepo-main    --baseurl=http://centos.mirror.local/ftp/pub/linux/esrepo/main/packages/centos/6/x86_64/    --include=coan,fsarchiver,k4dirstat,krusader,mtd-utils,mtd-utils-ubi,os-tweaks*,unifdef
 repo --name=esrepo-extras    --baseurl=http://centos.mirror.local/ftp/pub/linux/esrepo/extras/packages/centos/6/x86_64/    --include=firstinst-*,freetype*,livesys-service,minicom,wireshark*,emacs-git,git,git-cvs,git-email,git-gui,git-p4,git-svn,gitk,perl-Git*
 
-xconfig --startxonboot
-# Partition information - for LiveCD and installing to hard drive
 part / --size 7200 --fstype ext3
-services --enabled=NetworkManager,sshd --disabled=network
 
 ########################################################################
 # Include kickstart files
 ########################################################################
 
+%include centos-6.8-all-live-base.ks
 %include centos-6.8-x86_64-repos.ks
 
 ########################################################################
@@ -425,38 +412,3 @@ isomd5sum
 syslinux
 
 %end
-
-%post --nochroot
-DIST=el6
-ROOT_CLS_TOP_DIR="/root/centos-livecd-scripts/${DIST}"
-echo "###################################################################"
-echo "## running ${ROOT_CLS_TOP_DIR}/host/copy-files-to-target.sh"
-echo "###################################################################"
-set -x
-/usr/bin/tree -anFp ${ROOT_CLS_TOP_DIR}
-/bin/bash -x ${ROOT_CLS_TOP_DIR}/host/copy-files-to-target.sh 2>&1 | tee ${ROOT_CLS_TOP_DIR}/from-host/copy-files-to-target.log
-%end
-
-%post
-DIST=el6
-ROOT_CLS_TOP_DIR="/root/centos-livecd-scripts/${DIST}"
-echo "###################################################################"
-echo "## running ${ROOT_CLS_TOP_DIR}/target/post-install.sh"
-echo "###################################################################"
-set -x
-/usr/bin/tree -anFp ${ROOT_CLS_TOP_DIR}
-/bin/bash -x ${ROOT_CLS_TOP_DIR}/target/post-install.sh 2>&1 | tee ${ROOT_CLS_TOP_DIR}/from-target/post-install.log
-%end
-
-%post --nochroot
-DIST=el6
-ROOT_CLS_TOP_DIR="/root/centos-livecd-scripts/${DIST}"
-echo "###################################################################"
-echo "## running ${ROOT_CLS_TOP_DIR}/host/postnochroot-install.sh"
-echo "###################################################################"
-set -x
-/usr/bin/tree -anFp ${ROOT_CLS_TOP_DIR}
-/bin/bash -x ${ROOT_CLS_TOP_DIR}/host/postnochroot-install.sh 2>&1 | tee ${ROOT_CLS_TOP_DIR}/from-host/postnochroot-install.log
-/bin/bash -x ${ROOT_CLS_TOP_DIR}/host/copy-files-from-target.sh 2>&1 | tee ${ROOT_CLS_TOP_DIR}/from-host/copy-files-from-target.log
-%end
-
