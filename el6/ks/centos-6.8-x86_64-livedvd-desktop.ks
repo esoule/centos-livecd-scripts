@@ -20,5 +20,7 @@ part / --size 5600 --fstype ext3
 %packages
 freetype.i686
 freetype.x86_64
+freetype-devel.i686
+freetype-devel.x86_64
 
 %end
