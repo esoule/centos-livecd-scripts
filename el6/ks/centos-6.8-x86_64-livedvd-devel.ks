@@ -24,11 +24,5 @@ part / --size 7200 --fstype ext3
 ########################################################################
 
 %packages
-freetype.i686
-freetype.x86_64
-freetype-devel.i686
-freetype-devel.x86_64
-glibc-devel.i686
-glibc-devel.x86_64
 
 %end
