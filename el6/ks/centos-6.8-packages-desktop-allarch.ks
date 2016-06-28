@@ -233,6 +233,7 @@ wput
 
 #### Bits from esrepo-main repository
 fsarchiver
+krusader
 os-tweaks-aliases
 os-tweaks-bash-prompt
 os-tweaks-editor-vim
