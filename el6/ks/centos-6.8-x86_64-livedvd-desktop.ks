@@ -10,8 +10,8 @@ part / --size 5600 --fstype ext3
 ########################################################################
 
 %include centos-6.8-all-live-base.ks
-%include centos-6.8-x86_64-repos.ks
-%include centos-6.8-all-live-desktop-packages.ks
+%include centos-6.8-repos-common-x86_64.ks
+%include centos-6.8-packages-desktop-allarch.ks
 
 ########################################################################
 # Packages
