@@ -233,6 +233,8 @@ unrar
 wput
 
 #### Bits from esrepo-main repository
+cppunit113
+cppunit113-demos
 fsarchiver
 krusader
 os-tweaks-aliases

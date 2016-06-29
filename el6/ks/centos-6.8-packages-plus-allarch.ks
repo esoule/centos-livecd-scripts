@@ -11,6 +11,8 @@ git-p4
 
 #### Bits from esrepo-main repository
 coan
+cppunit113-devel
+cppunit113-doc
 k4dirstat
 mtd-utils
 mtd-utils-ubi
