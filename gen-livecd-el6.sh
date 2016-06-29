@@ -115,12 +115,14 @@ cp -r --preserve=mode,timestamps    \
 
 d=$PWD
 result_dir=$d/out/${KSDIR}
-mkdir -p $d/out $d/out/v $d/out/v/cache $d/out/v/tmp ${result_dir}
-chmod 0775 $d/out $d/out/v $d/out/v/cache $d/out/v/tmp ${result_dir}
-chgrp users $d/out $d/out/v $d/out/v/cache $d/out/v/tmp ${result_dir}
-ls -lad $d/out $d/out/v $d/out/v/cache $d/out/v/tmp ${result_dir}
+dirs_to_make="${result_dir} ${result_dir}/cache ${result_dir}/cache/cache ${result_dir}/cache/tmp"
 
-( cd ${result_dir} && livecd-creator -c "$KSR" --releasever=6 --tmpdir=$d/out/v/tmp --cache=$d/out/v/cache )
+mkdir -p ${dirs_to_make}
+chmod 0775 ${dirs_to_make}
+chgrp users ${dirs_to_make}
+ls -lad ${dirs_to_make}
+
+( cd ${result_dir} && livecd-creator -c "$KSR" --releasever=6 --tmpdir="${result_dir}/cache/tmp" --cache="${result_dir}/cache/cache" )
 
 rm -rf ${result_dir}/from-host
 rm -rf ${result_dir}/from-target
