@@ -191,6 +191,7 @@ vlgothic-p-fonts
 
 #### Bits from epel repository (except livecd-tools, python-imgcreate)
 bash-completion
+cppunit
 epel-release
 etckeeper
 fuse-sshfs
