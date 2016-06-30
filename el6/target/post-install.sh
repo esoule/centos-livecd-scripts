@@ -29,6 +29,9 @@ chmod 0644 /root/.gitconfig
 touch /etc/resolv.conf
 /sbin/restorecon /etc/resolv.conf
 
+# Creating a file for anaconda, to create the correct grub entry
+echo -e "CentOS.$(uname -m)\nCentOS Linux\n6\nyes" > /.buildstamp
+
 #
 # fix boot warning "GOTO 'pulseaudio_check_usb' has no matching label"
 # NOTE: temporary fix, taken from pulseaudio-0.9.21-21.el6
