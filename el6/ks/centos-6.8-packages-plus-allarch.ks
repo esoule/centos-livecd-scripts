@@ -5,6 +5,7 @@
 %packages
 #### Bits from epel repository (except livecd-tools, python-imgcreate)
 cppunit-doc
+tinyxml-devel
 
 #### Bits from esrepo-extras repository
 git-p4

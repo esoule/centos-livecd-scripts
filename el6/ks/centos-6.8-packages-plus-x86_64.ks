@@ -4,5 +4,6 @@
 
 %packages
 cppunit113-devel.x86_64
+tinyxml-devel.x86_64
 
 %end

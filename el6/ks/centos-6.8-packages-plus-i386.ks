@@ -4,5 +4,6 @@
 
 %packages
 cppunit113-devel.i686
+tinyxml-devel.i686
 
 %end

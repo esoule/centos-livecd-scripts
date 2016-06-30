@@ -209,6 +209,7 @@ putty
 rsnapshot
 qgit
 siege
+tinyxml
 
 #### Bits from elrepo repository
 elrepo-release
