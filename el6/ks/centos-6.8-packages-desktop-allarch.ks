@@ -148,7 +148,6 @@ wireshark-gnome
 xsettings-kde
 xterm
 yum-plugin-changelog
-yum-plugin-downloadonly
 yum-plugin-versionlock
 # Fonts
 cjkuni-fonts-ghostscript
