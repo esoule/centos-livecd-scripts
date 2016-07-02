@@ -91,6 +91,8 @@ hunspell-he
 hunspell-ru
 iotop
 java-1.6.0-openjdk
+java-1.7.0-openjdk
+java-1.8.0-openjdk
 jwhois
 k3b
 kcoloredit
