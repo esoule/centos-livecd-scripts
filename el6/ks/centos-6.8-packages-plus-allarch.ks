@@ -19,4 +19,7 @@ mtd-utils
 mtd-utils-ubi
 unifdef
 
+#### Bits from esrepo-main repository
+esrepo-release-local
+
 %end
