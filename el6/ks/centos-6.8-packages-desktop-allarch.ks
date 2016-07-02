@@ -267,6 +267,7 @@ firstinst-gconf-font-rendering-config
 firstinst-gconf-gpk-update-icon-off
 firstinst-gconf-login-user-list-off
 firstinst-gconf-metacity-num-workspaces
+firstinst-gconf-nautilus-no-autorun
 firstinst-gconf-screensaver-lock-off
 firstinst-gconf-session-idle-delay
 firstinst-gconf-terminal-default-profile-prefs
