@@ -99,7 +99,6 @@ nut
 nut-cgi
 nut-client
 pigz
-pyliblzma
 uboot-tools
 
 %end
