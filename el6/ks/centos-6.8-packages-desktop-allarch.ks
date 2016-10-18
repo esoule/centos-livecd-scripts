@@ -250,7 +250,7 @@ os-tweaks-sysctl-ipv4-forward
 os-tweaks-sysctl-vm-swappiness
 ttt
 
-#### Bits from esrepo-extras repository
+#### Bits from esrepo-livemedia repository
 firstinst-adduser-linuxuser
 firstinst-adduser-tempuser1
 firstinst-avahi-daemon-off
