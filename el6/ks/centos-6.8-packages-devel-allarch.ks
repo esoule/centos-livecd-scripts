@@ -92,7 +92,6 @@ yum-utils
 #### Bits from epel repository (except livecd-tools, python-imgcreate)
 ccache
 createrepo_c
-createrepo_c-libs
 ddd
 mock
 nut
