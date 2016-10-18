@@ -90,23 +90,16 @@ yum-utils
 -kdepimlibs-akonadi
 
 #### Bits from epel repository (except livecd-tools, python-imgcreate)
-Canna-libs
 ccache
-compface
 createrepo_c
 createrepo_c-libs
 ddd
 mock
-neXtaw
 nut
 nut-cgi
 nut-client
 pigz
 pyliblzma
 uboot-tools
-xemacs
-xemacs-common
-xemacs-filesystem
-xemacs-packages-base
 
 %end
