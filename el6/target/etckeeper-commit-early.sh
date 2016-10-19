@@ -1,11 +1,11 @@
 #!/bin/bash
 if [ ! -x /usr/bin/etckeeper ] ; then
-    exit 0
+	exit 0
 fi
 
 # workaround for "fatal: $HOME is not set"
 if [ -z "$HOME" ] ; then
-    export HOME=/root
+	export HOME=/root
 fi
 
 cat <<"____EOF" >/etc/.gitignore

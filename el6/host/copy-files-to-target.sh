@@ -7,8 +7,8 @@ echo "## running copy-files-to-target.sh"
 echo "###################################################################"
 
 if [ -z "${INSTALL_ROOT}" ] ; then
-    echo "ERROR: INSTALL_ROOT empty" >&2
-    exit 1
+	echo "ERROR: INSTALL_ROOT empty" >&2
+	exit 1
 fi
 
 /usr/bin/tree -anFp ${ROOT_CLS_TOP_DIR}

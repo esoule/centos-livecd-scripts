@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if [ -z "$LIVE_ROOT" ] ; then
-    echo "ERROR: LIVE_ROOT empty" >&2
-    exit 1
+	echo "ERROR: LIVE_ROOT empty" >&2
+	exit 1
 fi
 
 cp $LIVE_ROOT/isolinux/isolinux.cfg $LIVE_ROOT/isolinux/isolinux.cfg.orig

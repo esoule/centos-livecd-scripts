@@ -56,7 +56,7 @@ find /lib/modules/ \( -type f -o -type l \) -name '*.ko' | grep '\(extra\|weak\)
 
 # go ahead and pre-make mlocate database
 if [ -e /etc/cron.daily/mlocate.cron ] ; then
-    /bin/sh /etc/cron.daily/mlocate.cron
+	/bin/sh /etc/cron.daily/mlocate.cron
 fi
 ls -la /var/lib/mlocate/*.db
 
