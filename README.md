@@ -19,7 +19,7 @@ Synopsis
 Requirements
 ------------
 
-* realpath (available in rpmforge repository)
+* realpath (available in esrepo-main repository)
 * livecd-creator from livecd-tools (available in epel repository)
 * gen-livecd.sh must be run as root
 

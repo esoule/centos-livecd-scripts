@@ -94,7 +94,7 @@ KS="$1"
 FSLABEL="$2"
 ERR=0
 check_kickstart_file
-check_prerequisite realpath "realpath" "rpmforge"
+check_prerequisite realpath "realpath" "esrepo-main"
 check_prerequisite livecd-creator "livecd-tools" "epel"
 check_root_for_creator
 if [ $ERR -ne 0 ] ; then

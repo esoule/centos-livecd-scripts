@@ -223,14 +223,12 @@ kmod-r8169
 nginx-release-centos
 nginx
 
-#### Bits from rpmforge
-fuse-cryptofs
+#### Bits from esrepo-main repository (was rpmforge)
 fuse-iso
 lha
 numlockx
 realpath
-rpmforge-release
-synergy
+# synergy
 unrar
 wput
 
@@ -290,7 +288,6 @@ firstinst-tftp-config
 firstinst-vsftpd-config
 firstinst-yum-config
 firstinst-yum-epel-repo-config
-firstinst-yum-rpmforge-repo-config
 livesys-service
 
 # livecd bits to set up the livecd and be able to install
