@@ -2,8 +2,8 @@
 export LANG=C
 export LC_ALL=C
 export TZ=UTC
-PROGNAME=$(echo `basename $0`)
-TOP_DIR=$(cd `dirname $0` && pwd)
+PROGNAME="$(echo "$(basename $0)")"
+TOP_DIR="$(cd "$(dirname $0)" && pwd)"
 ERR=0
 DIST=el6
 ROOT_CLS_TOP_DIR="/root/centos-livecd-scripts/${DIST}"
@@ -51,12 +51,12 @@ check_kickstart_file()
 		e "Kickstart file must be provided (check path $KS)"
 		return 0
 	fi
-	KSR=`realpath --strip "$KS"`
+	KSR="$(realpath --strip "$KS")"
 	if [ ! \( -n "$KSR" -a -f "$KSR" -a -r "$KSR" \) ] ; then
 		e "kickstart file must be a readable regular file ($KSR)"
 		return 0
 	fi
-	KSBN=`basename ${KSR}`
+	KSBN="$(basename ${KSR})"
 	KSDIR=${KSBN%.cfg}
 	KSDIR=${KSDIR%.ks}
 	if [ -z "$KSDIR" ] ; then
