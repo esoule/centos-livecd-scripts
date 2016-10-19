@@ -235,6 +235,7 @@ unrar
 wput
 
 #### Bits from esrepo-main repository
+discount
 cppunit113
 cppunit113-demos
 fsarchiver
