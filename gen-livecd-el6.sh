@@ -1,4 +1,7 @@
 #!/bin/bash
+export LANG=C
+export LC_ALL=C
+export TZ=UTC
 PROGNAME=$(echo `basename $0`)
 TOP_DIR=$(cd `dirname $0` && pwd)
 ERR=0
