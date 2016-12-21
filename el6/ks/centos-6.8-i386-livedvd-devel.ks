@@ -1,5 +1,5 @@
 
-part / --size 7200 --fstype ext3
+part / --size 7200 --fstype ext4
 
 ########################################################################
 # Include kickstart files
