@@ -228,7 +228,6 @@ fuse-iso
 lha
 numlockx
 realpath
-# synergy
 unrar
 wput
 

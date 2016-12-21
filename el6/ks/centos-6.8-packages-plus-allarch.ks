@@ -9,6 +9,7 @@ tinyxml-devel
 
 #### Bits from esrepo-extras repository
 git-p4
+synergy
 
 #### Bits from esrepo-main repository
 coan
