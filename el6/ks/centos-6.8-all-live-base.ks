@@ -9,7 +9,7 @@
 
 lang en_CA.UTF-8
 keyboard us
-timezone  America/Toronto
+timezone  Etc/UTC
 auth  --useshadow  --passalgo=sha512
 selinux --enforcing
 firewall --enabled --ssh
