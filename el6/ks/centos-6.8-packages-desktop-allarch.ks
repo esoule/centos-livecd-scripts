@@ -251,6 +251,7 @@ ttt
 #### Bits from esrepo-livemedia repository
 firstinst-adduser-linuxuser
 firstinst-adduser-tempuser1
+firstinst-anaconda-liveinst-utc-timezone
 firstinst-avahi-daemon-off
 firstinst-core
 firstinst-developers-developers
