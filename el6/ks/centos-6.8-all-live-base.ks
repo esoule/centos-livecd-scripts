@@ -1,8 +1,8 @@
 ########################################################################
 #
-# centos-6.8-all-live-base.ks
+# centos-6.9-all-live-base.ks
 #
-# Defines the basics for all kickstarts of centos-6.8-*-live
+# Defines the basics for all kickstarts of centos-6.9-*-live
 # Kickstarts including this template can override these settings
 #
 ########################################################################
